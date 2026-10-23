@@ -1,0 +1,57 @@
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build directories
+Debug/
+Release/
+x64/
+x86/
+ARM/
+ARM64/
+build/
+out/
+
+# Compiled files
+*.obj
+*.o
+*.pdb
+*.ilk
+*.idb
+*.ipch
+*.pch
+*.tlog
+*.lastbuildstate
+*.log
+
+# Executables
+*.exe
+*.dll
+*.lib
+*.exp
+
+# IntelliSense
+ipch/
+*.VC.db
+*.VC.opendb
+*.VC.db-shm
+*.VC.db-wal
+*.opensdf
+*.sdf
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.cache
+*.opendb
+
+# CMake (if used)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
