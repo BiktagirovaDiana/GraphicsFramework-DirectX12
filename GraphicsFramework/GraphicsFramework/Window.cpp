@@ -14,6 +14,19 @@ Window::~Window()
         DestroyWindow(hwnd);
     }
 }
+int Window::GetWidth()
+{
+    RECT rect;
+    GetClientRect(hwnd, &rect);
+    return rect.right - rect.left;
+}
+
+int Window::GetHeight()
+{
+    RECT rect;
+    GetClientRect(hwnd, &rect);
+    return rect.bottom - rect.top;
+}
 
 bool Window::Create()
 {
@@ -38,23 +51,14 @@ bool Window::Create()
         FALSE
     );
 
-    hwnd = CreateWindowEx(
-        0,
-        className,
-        L"DirectX 12 Framework",
-        WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT,
-        CW_USEDEFAULT,
-        rect.right - rect.left,
-        rect.bottom - rect.top,
-        nullptr,
-        nullptr,
-        hInstance,
-        nullptr
-    );
+    hwnd = CreateWindowEx(0, className,L"DirectX 12 Framework", WS_OVERLAPPEDWINDOW,CW_USEDEFAULT,CW_USEDEFAULT,
+        rect.right - rect.left,rect.bottom - rect.top,nullptr, nullptr, hInstance, nullptr );
 
     if (!hwnd)
+    {
         return false;
+    }
+       
 
     ShowWindow(hwnd, SW_SHOW);
 

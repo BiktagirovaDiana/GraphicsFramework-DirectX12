@@ -18,6 +18,7 @@ int main()
     Window window(1280, 720);
     Microsoft::WRL::ComPtr<ID3D12Device> device;
     HRESULT hr = D3D12CreateDevice(nullptr, D3D_FEATURE_LEVEL_11_0,IID_PPV_ARGS(&device));
+
     if (FAILED(hr))
     {
         std::cout << "Ошибка создания Device!" << std::endl;

@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="GraphicsFramework/GraphicsFramework.vcxproj" />
+  <Project Path="GraphicsFramework/GraphicsFramework.vcxproj" Id="ae25f028-41d6-4ae0-ab0f-0c7bce03ef34" />
 </Solution>

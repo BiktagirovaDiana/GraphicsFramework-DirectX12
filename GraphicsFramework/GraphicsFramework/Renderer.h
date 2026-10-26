@@ -4,20 +4,29 @@
 #include <dxgi1_6.h>
 #include <wrl/client.h>
 
+#include "SwapChain.h"
+
 #pragma comment(lib, "d3d12.lib")
 #pragma comment(lib, "dxgi.lib")
+using Microsoft::WRL::ComPtr;
+
+
 class Renderer
 {
 public:
-	Renderer(ID3D12Device* device);
+	Renderer(ID3D12Device* device, SwapChain* swapChain);
 	~Renderer();
 
+
+	void Render();
 	void CreateCommandQueue();
 	void CreateCommandList();
 private:
-	ID3D12Device* _device;
-	ID3D12CommandQueue* _commandQueue = nullptr;
-	ID3D12CommandList* _commandList = nullptr;
-	ID3D12CommandAllocator* _commandAllocator = nullptr;
+	ComPtr <ID3D12Device> _device;
+	ComPtr <SwapChain> _swapChain = nullptr;
+
+	ComPtr <ID3D12CommandQueue> _commandQueue = nullptr;
+	ComPtr <ID3D12GraphicsCommandList> _commandList = nullptr;
+	ComPtr <ID3D12CommandAllocator> _commandAllocator = nullptr;
 };
 

@@ -24,5 +24,8 @@ public:
     bool Create();
     bool ProcessMessages();
 
+    int GetWidth();
+    int GetHeight();
+
     HWND GetHWND() const;
 };

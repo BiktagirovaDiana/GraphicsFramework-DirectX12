@@ -1,17 +1,23 @@
 #include "Renderer.h"
 
-Renderer::Renderer(ID3D12Device* device)
+Renderer::Renderer(ID3D12Device* device, SwapChain* swapChain)
 {
 	_device = device;
+    _swapChain = swapChain;
     CreateCommandQueue();
 }
 
 Renderer::~Renderer() 
 {
-    if (_commandQueue)
-    {
-        _commandQueue->Release();
-    }
+
+}
+
+void Renderer::Render() 
+{
+    _commandAllocator->Reset();
+    _commandList->Reset(_commandAllocator.Get(), nullptr);
+
+    ID3D12Resource* backBuffer = _swapChain->getBackBuffer(_swapChain->getCurrentBackBufferIndex());
 }
 void Renderer::CreateCommandQueue() 
 {
@@ -21,12 +27,13 @@ void Renderer::CreateCommandQueue()
     descriptor.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE; //без доп флагов
     descriptor.NodeMask = 0;
 
-    HRESULT hresult = _device->CreateCommandQueue(&descriptor, IID_PPV_ARGS(&_commandQueue));
+    _device->CreateCommandQueue(&descriptor, IID_PPV_ARGS(&_commandQueue));
 
 }
 void Renderer::CreateCommandList()
 {
     D3D12_COMMAND_LIST_TYPE type = D3D12_COMMAND_LIST_TYPE_DIRECT;
-    HRESULT hresult = _device->CreateCommandAllocator(type, IID_PPV_ARGS(&_commandAllocator));
-    _device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, _commandAllocator, nullptr, IID_PPV_ARGS(&_commandList));
+    _device->CreateCommandAllocator(type, IID_PPV_ARGS(&_commandAllocator));
+    _device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, _commandAllocator.Get(), nullptr, IID_PPV_ARGS(&_commandList));
+
 }
