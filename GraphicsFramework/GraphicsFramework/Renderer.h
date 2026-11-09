@@ -3,6 +3,7 @@
 #include <d3d12.h>
 #include <dxgi1_6.h>
 #include <wrl/client.h>
+#include <memory>
 
 #include "SwapChain.h"
 
@@ -11,10 +12,12 @@
 using Microsoft::WRL::ComPtr;
 
 
+
+
 class Renderer
 {
 public:
-	Renderer(ID3D12Device* device, SwapChain* swapChain);
+	Renderer(ID3D12Device* device, HWND hwnd, uint16_t width, uint16_t height);
 	~Renderer();
 
 
@@ -23,7 +26,7 @@ public:
 	void CreateCommandList();
 private:
 	ComPtr <ID3D12Device> _device;
-	ComPtr <SwapChain> _swapChain = nullptr;
+	std::unique_ptr<SwapChain> _swapChain;
 
 	ComPtr <ID3D12CommandQueue> _commandQueue = nullptr;
 	ComPtr <ID3D12GraphicsCommandList> _commandList = nullptr;

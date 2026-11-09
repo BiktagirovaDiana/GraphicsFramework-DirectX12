@@ -14,7 +14,7 @@ class SwapChain
 
 public:
 	SwapChain(HWND hwnd, ID3D12CommandQueue* commandQueue, uint16_t width, uint16_t height, ID3D12Device* device);
-	~SwapChain();
+	~SwapChain() = default;
 
 	void CreateSwapChain(HWND hwnd,ID3D12CommandQueue* commandQueue);
 	void CreateBackBuffers();
@@ -22,6 +22,9 @@ public:
 	
 	ID3D12Resource* getBackBuffer(uint8_t index);
 	uint8_t getCurrentBackBufferIndex();
+	ID3D12DescriptorHeap* getRTV();
+
+	void Present();
 private:
 
 	ComPtr <IDXGISwapChain3> _swapChain3 = nullptr;

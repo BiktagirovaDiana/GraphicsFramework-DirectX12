@@ -5,6 +5,8 @@
 
 #include <iostream>
 #include "Window.h"
+#include "Renderer.h"
+#include "SwapChain.h"
 
 #include <d3d12.h>
 #include <dxgi1_6.h>
@@ -30,10 +32,12 @@ int main()
         return -1;
     }
 
+    Renderer renderer(device.Get(), window.GetHWND(), window.GetWidth(), window.GetHeight());
     while (window.ProcessMessages())
     {
-        // Здесь позже будет Renderer::Render()
+        renderer.Render();
+        //std::cout << "Render" << std::endl;
     }
-
+    ;
     return 0;
 }

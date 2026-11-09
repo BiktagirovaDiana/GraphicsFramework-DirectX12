@@ -8,7 +8,6 @@ SwapChain::SwapChain(HWND hwnd, ID3D12CommandQueue* commandQueue, uint16_t width
 	CreateSwapChain(hwnd, commandQueue);
     CreateRTV();
     CreateBackBuffers();
-    
 
 }
 
@@ -71,4 +70,14 @@ ID3D12Resource* SwapChain::getBackBuffer(uint8_t index)
 uint8_t SwapChain::getCurrentBackBufferIndex() 
 {
     return _swapChain3->GetCurrentBackBufferIndex();
+}
+
+ID3D12DescriptorHeap* SwapChain::getRTV() 
+{
+    return _rtvHeap.Get();
+}
+
+void SwapChain::Present() 
+{
+    _swapChain3->Present(1, 0);
 }
