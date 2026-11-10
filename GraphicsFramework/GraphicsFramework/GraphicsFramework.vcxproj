@@ -141,12 +141,16 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="GraphicsFramework.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Buffer.h" />
+    <ClInclude Include="Geometry.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="Window.h" />
